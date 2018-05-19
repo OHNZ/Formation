@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <report id="report_table_session"
+                 model="openacademy.session"
+                 string="Session report table"
+                 name="openacademy.report_table_session_view"
+                 file="openacademy.report_table_session_view"
+                 report_type="qweb-pdf"/>
+
+        <template id="report_table_session_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <p>From <span t-field="doc.date_start"/> to <span t-field="doc.date_stop"/> </p>
+                            <h3>Attendees</h3>
+
+                        <table class="table table-bordered">
+                            <thead>
+
+                                <tr>
+                                    <th>
+                                        <strong>Nom</strong>
+                                    </th>
+                                    <th><strong>Age</strong></th>
+                                    <th><strong>Sexe</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.regrouper_participant()" t-as="participant">
+                                    <tr>
+                                        <td colspan="3" style="text-align:center;">
+                                          <strong><t t-esc="participant[0].company_type"/></strong>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="participant" t-as="particulier">
+                                    <tr>
+                                        <td>
+                                            <span t-field="particulier.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="particulier.age"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="particulier.sexe"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

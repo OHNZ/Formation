@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="openacademy_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div/div[@name='payment_term']" position="after">
+        <div name="date_cmd"  class="col-xs-3">
+                    <strong>Date de Commande</strong>
+                    <p t-field="doc.date_order"/>
+        </div>
+        <div name="ref"  class="col-xs-3">
+                    <strong>Réference Client</strong>
+                    <p t-field="doc.client_order_ref"/>
+        </div>
+        <div name="equip_vente"  class="col-xs-3">
+                    <strong>Equipe de Vente</strong>
+                    <p t-field="doc.team_id"/>
+        </div>
+    </xpath>
+</template>
+</odoo>
